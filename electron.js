@@ -3,37 +3,42 @@ const path = require('path');
 
 let mainWindow;
 
-function createMainWindow() {
-  // Create the main window
+function createWindow() {
+  // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 600,
-    show: false,
-    frame: false,
-    icon: path.join(__dirname, 'res/icon.ico')
+    height: 800,
+    webPreferences: {
+      nodeIntegration: true
+    },
+    icon: path.join(__dirname, 'res/icon.ico') 
   });
 
-  mainWindow.loadFile('src/index.html');
+  // Load the index.html of the app.
+  mainWindow.loadFile(path.join(__dirname, 'src/index.html'));
 
+  // Open the DevTools.
+  // mainWindow.webContents.openDevTools();
+
+  // Hide the default menu
   Menu.setApplicationMenu(null);
 
+  // Hide the console (remove this line if you want to keep the console)
   mainWindow.webContents.closeDevTools();
 
-  // Show the window once it's ready
-  mainWindow.once('ready-to-show', () => {
-    mainWindow.show();
-  });
+  // Maximize the window
+  mainWindow.maximize();
 
+  // Emitted when the window is closed.
   mainWindow.on('closed', () => {
+    // Dereference the window object.
     mainWindow = null;
   });
-
-  mainWindow.maximize();
 }
 
-app.on('ready', () => {
-  createMainWindow();
-});
+app.on('ready', createWindow);
+
+
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -41,8 +46,3 @@ app.on('window-all-closed', () => {
   }
 });
 
-app.on('activate', () => {
-  if (mainWindow === null) {
-    createMainWindow();
-  }
-});
