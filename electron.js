@@ -1,36 +1,48 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu, Tray } = require('electron');
 const path = require('path');
 
 let mainWindow;
 
-function createWindow() {
-  // Create the browser window.
+function createMainWindow() {
+  // Create the main window
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 800,
-    webPreferences: {
-      nodeIntegration: true
-    }
+    height: 600,
+    show: false,
+    frame: false,
+    icon: path.join(__dirname, 'res/icon.ico')
   });
 
-  // Load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, 'src/index.html'));
+  mainWindow.loadFile('src/index.html');
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  Menu.setApplicationMenu(null);
 
-  // Maximize the window
-  mainWindow.maximize();
+  mainWindow.webContents.closeDevTools();
 
-  // Emitted when the window is closed.
+  // Show the window once it's ready
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
+  });
+
   mainWindow.on('closed', () => {
-    // Dereference the window object.
     mainWindow = null;
   });
+
+  mainWindow.maximize();
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createMainWindow();
+});
 
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+
+app.on('activate', () => {
+  if (mainWindow === null) {
+    createMainWindow();
+  }
+});

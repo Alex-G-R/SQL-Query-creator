@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "electron.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Alex-G-R/SQL-Query-creator.git"
@@ -19,5 +17,8 @@
   "homepage": "https://github.com/Alex-G-R/SQL-Query-creator#readme",
   "dependencies": {
     "electron": "^29.1.4"
+  },
+  "devDependencies": {
+    "electron-packager": "^17.1.2"
   }
 }
