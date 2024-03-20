@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Creator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>SQL Query Creator</h1>
+        <form id="queryForm">
+            <div class="form-group">
+                <label for="selectFields">Wybierz pola:</label>
+                <input type="text" id="selectFields" placeholder="np: pole1, pole2">
+            </div>
+            <div class="form-group">
+                <label for="fromTable">Z tabeli:</label>
+                <input type="text" id="fromTable" placeholder="np: nazwa_tablicy">
+            </div>
+            <div class="form-group">
+                <label for="whereCondition">Warunek Where:</label>
+                <input type="text" id="whereCondition" placeholder="np: pole = 'wartość'">
+            </div>
+            <div class="form-group">
+                <label for="advancedCheckbox">Pokaż zaawansowane funkcje</label>
+                <input type="checkbox" id="advancedCheckbox">
+            </div>
+            <div id="advancedFields" style="display:none;">
+                <div class="form-group">
+                    <label for="joinTable">Join Table:</label>
+                    <input type="text" id="joinTable" placeholder="np: dołączona_tabela">
+                </div>
+                <div class="form-group">
+                    <label for="joinCondition">Warunek Join:</label>
+                    <input type="text" id="joinCondition" placeholder="np: tablica1.id = tablica2.id">
+                </div>
+                <div class="form-group">
+                    <label for="groupByFields">Grupuj Według Pól:</label>
+                    <input type="text" id="groupByFields" placeholder="np: pole1, pole2">
+                </div>
+                <div class="form-group">
+                    <label for="orderByFields">Sortuj Według Pól:</label>
+                    <input type="text" id="orderByFields" placeholder="np: pole1 ASC, pole2 DESC">
+                </div>
+            </div>
+            <button type="submit">Generuj zapytanie</button>
+            <button type="button" id="clearButton">Wyczyść formluarz</button>
+        </form>
+        <div id="queryResult">
+            <textarea id="queryTextarea" readonly></textarea>
+            <button id="copyButton">Skopiuj do schowka</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

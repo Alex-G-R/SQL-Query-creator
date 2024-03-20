@@ -1,0 +1,23 @@
+{
+  "name": "sql-query-creator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "electron.js",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-G-R/SQL-Query-creator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alex-G-R/SQL-Query-creator/issues"
+  },
+  "homepage": "https://github.com/Alex-G-R/SQL-Query-creator#readme",
+  "dependencies": {
+    "electron": "^29.1.4"
+  }
+}
